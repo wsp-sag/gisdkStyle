@@ -30,12 +30,17 @@ A single GISDK script should accomplish only one primary purpose, though it may 
 Lines should be limited to 80 characters. Broken lines should wrap to the beginning of the current bracket or parenthesis.
 
 **Good**
+
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir,
                     iteration_number, scenario_dir))
+
 **Bad**
+
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir,
       iteration_number, scenario_dir))
+
 **worse**
+
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir, iteration_number, scenario_dir))
 
 
