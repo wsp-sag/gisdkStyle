@@ -47,3 +47,21 @@ Lines should be limited to 80 characters. Broken lines should wrap to the beginn
 ### Naming
 
 
+### Commenting
+
+Borrowing from [Google's Python documentation style](https://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Comments):
+
+>Complicated operations get a few lines of comments before the operations commence. Non-obvious ones get comments at the end of the line.
+
+    /* We use a weighted dictionary search to find out where i is in
+     the array.  We extrapolate position based on the largest num
+     in the array and the array size and then do binary search to
+     get the exact number. */
+
+    if i & (i-1) == 0:        // true iff i is a power of 2
+
+Unlike their recommendation, do not assume that the reader of your code will understand GISDK better than you.  Many clients are new to GISDK, or even script in general.  As a result, it is OK to explain the code if numerous loops or complicated arrays are constructed.
+
+
+
+
