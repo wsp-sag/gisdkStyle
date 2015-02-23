@@ -19,17 +19,32 @@ Others will be added as we receive them.
 
 ## Style Guide 
 
+Properly written code is easier to read, follow, debug, and improve. Taking a small amount of time to write clean code will save you and others a significant amount of time in the future.
+
 These are styles and conventions that we have begun to implement in our work at PB. They are subject to change and/or evolution as more developers join the projects. We invite others involved with TransCAD development to participate.
+
+
 
 ### Script Layout
 
 A single GISDK script should accomplish only one primary purpose, though it may contain more than one `Macro` definition if they are related to the model step. It is preferable to write multiple scripts than to create an overly long process.
 
-### Code Structure
+### Line structure
 
-Lines should be limited to 80 characters. Broken lines should wrap to the beginning of the current bracket or parenthesis.
+Lines should be limited to 80 characters and only execute one statement or function. Lines longer than this are difficult to view in terminals, the GISDK debugger, or side-by-side. Function inputs should ideally occupy their own line, indented within the function brackets. An acceptable (but not ideal) alternative is to break the line to the opening bracket.
 
-**Good**
+**Best**
+
+    return(
+      RunMacro("CreateAllStreetSkims",
+        street_layer_file, 
+        outputs_dir,
+        iteration_number, 
+        scenario_dir
+      )
+    )
+
+**OK**
 
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir,
                     iteration_number, scenario_dir))
@@ -39,10 +54,23 @@ Lines should be limited to 80 characters. Broken lines should wrap to the beginn
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir,
       iteration_number, scenario_dir))
 
-**worse**
+**Worst**
 
     return(RunMacro("CreateAllStreetSkims", street_layer_file, outputs_dir, iteration_number, scenario_dir))
 
+Indents should be two spaces, and never tabs.
+
+
+### Operators
+Operators, such as `+`, `=`, etc. should always have a space on both sides. Commas should have a whitespace after, but never before.
+
+**Good**
+
+    x = y + 1
+
+**Bad**
+
+    x=y+1
 
 ### Naming
 
