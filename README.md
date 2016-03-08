@@ -5,10 +5,10 @@ Style guide and syntax files for GISDK development.
 
 ## Syntax Files
 
-TransCAD's GISDK scripting language is a powerful proprietary language used almost exclusively for travel demand modeling. Because the user community is fairly small, coding standards and conventions are not as well-developed as C, Java, R, or Python. We hope to change this. 
+TransCAD's GISDK scripting language is a powerful proprietary language used almost exclusively for travel demand modeling. Because the user community is fairly small, coding standards and conventions are not as well-developed as C, Java, R, or Python. We hope to change this.
 
 In the `syntax/` folder you will find syntax files that we have created and/or collected to write GISDK script in a variety of text editors. Currently we host working files for:
-  
+
   - *vim*: place in your `~/vimfiles/syntax/` folder, and add the following to your `.vimrc`:
     autocm BufRead,BufNewFile *.rsc set filetype=gisdk
 
@@ -17,7 +17,7 @@ In the `syntax/` folder you will find syntax files that we have created and/or c
 
 Others will be added as we receive them.
 
-## Style Guide 
+## Style Guide
 
 Properly written code is easier to read, follow, debug, and improve. Taking a small amount of time to write clean code will save you and others a significant amount of time in the future.
 
@@ -37,9 +37,9 @@ Lines should be limited to 80 characters and only execute one statement or funct
 
     return(
       RunMacro("CreateAllStreetSkims",
-        street_layer_file, 
+        street_layer_file,
         outputs_dir,
-        iteration_number, 
+        iteration_number,
         scenario_dir
       )
     )
@@ -82,15 +82,37 @@ Borrowing from [Google's Python documentation style](https://google-styleguide.g
 
 >Complicated operations get a few lines of comments before the operations commence. Non-obvious ones get comments at the end of the line.
 
+```
     /* We use a weighted dictionary search to find out where i is in
      the array.  We extrapolate position based on the largest num
      in the array and the array size and then do binary search to
      get the exact number. */
 
     if i & (i-1) == 0:        // true iff i is a power of 2
-
+```
 Unlike their recommendation, do not assume that the reader of your code will understand GISDK better than you.  Many clients are new to GISDK, or even script in general.  As a result, it is OK to explain the code if numerous loops or complicated arrays are constructed.
 
+### Looping
 
+Unlike Python or R, GISDK does not support the following looping syntax:
 
+    for i in array
 
+In order to keep looping simple and easy to modify, do not use subscripts throughout the loop.  Instead, define variables using subscripts at the beginning of the loop only.  This makes the code easier to understand and modify for the next user.
+
+**Good**
+```
+TimeOfDay = {"AM", "MD", "PM"}
+for t = 1 to TimeOfDay.length do
+  tod = TimeOfDay[t]
+
+  FileName = tod + "_trips.bin"
+end
+```
+**Bad**
+```
+TimeOfDay = {"AM", "MD", "PM"}
+for t = 1 to TimeOfDay.length do
+  FileName = TimeOfDay[t] + "_trips.bin"
+end
+```
