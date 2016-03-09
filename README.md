@@ -10,9 +10,11 @@ TransCAD's GISDK scripting language is a powerful proprietary language used almo
 In the `syntax/` folder you will find syntax files that we have created and/or collected to write GISDK script in a variety of text editors. Currently we host working files for:
 
   - *vim*: place in your `~/vimfiles/syntax/` folder, and add the following to your `.vimrc`:
+  
   ```sh
     autocm BufRead,BufNewFile *.rsc set filetype=gisdk
   ```
+
   - *Notepad++*
   - *UltraEdit*
   - [*Atom*](https://atom.io/packages/language-gisdk)
