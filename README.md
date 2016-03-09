@@ -10,7 +10,7 @@ TransCAD's GISDK scripting language is a powerful proprietary language used almo
 In the `syntax/` folder you will find syntax files that we have created and/or collected to write GISDK script in a variety of text editors. Currently we host working files for:
 
   - *vim*: place in your `~/vimfiles/syntax/` folder, and add the following to your `.vimrc`:
-  
+
   ```sh
     autocm BufRead,BufNewFile *.rsc set filetype=gisdk
   ```
@@ -102,7 +102,9 @@ Unlike Python or R, GISDK does not support the following looping syntax:
 
     for i in array
 
-In order to keep looping simple and easy to modify, do not use subscripts throughout the loop.  Instead, define variables using subscripts at the beginning of the loop only.  This makes the code easier to understand and modify for the next user.
+In order to keep looping clear and easy to modify, do not repeatedly use subscripts in long or complex loops.  Instead, define variables using subscripts at the beginning of the loop.  This makes the code easier to understand and modify for the next user.
+
+An exception can be made for very simple loops.
 
 **Good**
 ```c
@@ -111,12 +113,26 @@ for t = 1 to TimeOfDay.length do
   tod = TimeOfDay[t]
 
   FileName = tod + "_trips.bin"
+  if tod = "AM" then do
+    // more code
+  end
 end
 ```
+
+**OK**
+```c
+for t = 1 to TimeOfDay.length do
+  FileName = TimeOfDay[t] + "_trips.bin"
+end
+```
+
 **Bad**
 ```c
 TimeOfDay = {"AM", "MD", "PM"}
 for t = 1 to TimeOfDay.length do
   FileName = TimeOfDay[t] + "_trips.bin"
+  if TimeOfDay[t] = "AM" then do
+    // more code
+  end
 end
 ```
