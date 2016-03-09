@@ -149,17 +149,6 @@ data.Task2 = "Get Ready"
 data.Task3 = "Go to Work"
 ```
 
-**Bad**
-```c
-dim data[3,2]
-data[1][1] = "Task1"
-data[1][2] = "Wake Up"
-data[2][1] = "Task2"
-data[2][2] = "Get Ready"
-data[3][1] = "Task3"
-data[3][2] = "Go to Work"
-```
-
 One of the major benefits of this "option" array structure is that it allows for [indirection](https://en.wikipedia.org/wiki/Indirection) (referencing a variable with other variables).
 
 ```c
