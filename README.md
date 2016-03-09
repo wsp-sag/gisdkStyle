@@ -136,3 +136,43 @@ for t = 1 to TimeOfDay.length do
   end
 end
 ```
+
+### Complex Arrays
+
+Multi-dimensional arrays should utilize the GISDK structure referred to as "Options Arrays."  These are most commonly used by Caliper to pass large numbers of arguments into Caliper-provided functions, but they provide access to powerful features, like indirection, that are otherwise missing from the language.  As a result, these structures should be used for any and all high-dimensioned, complex arrays.  They should also always be initialized to null before using.
+
+**Good**
+```c
+data = null
+data.Task1 = "Wake Up"
+data.Task2 = "Get Ready"
+data.Task3 = "Go to Work"
+```
+
+**Bad**
+```c
+dim data[3,2]
+data[1][1] = "Task1"
+data[1][2] = "Wake Up"
+data[2][1] = "Task2"
+data[2][2] = "Get Ready"
+data[3][1] = "Task3"
+data[3][2] = "Go to Work"
+```
+
+One of the major benefits of this "option" array structure is that it allows for [indirection](https://en.wikipedia.org/wiki/Indirection) (referencing a variable with other variables).
+
+```c
+data = null
+data.Number = 1
+data.Letter = "A"
+string = "Number"
+
+data.(string) // returns 1. Note the ().
+```
+
+The dot notation can be strung together to create as complex an object as needed.
+```c
+data = null
+data.Task1.SubTask1 = "Open Eyes"
+```
