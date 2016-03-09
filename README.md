@@ -86,7 +86,7 @@ Borrowing from [Google's Python documentation style](https://google-styleguide.g
 
 >Complicated operations get a few lines of comments before the operations commence. Non-obvious ones get comments at the end of the line.
 
-```
+```c
     /* We use a weighted dictionary search to find out where i is in
      the array.  We extrapolate position based on the largest num
      in the array and the array size and then do binary search to
@@ -105,7 +105,7 @@ Unlike Python or R, GISDK does not support the following looping syntax:
 In order to keep looping simple and easy to modify, do not use subscripts throughout the loop.  Instead, define variables using subscripts at the beginning of the loop only.  This makes the code easier to understand and modify for the next user.
 
 **Good**
-```
+```c
 TimeOfDay = {"AM", "MD", "PM"}
 for t = 1 to TimeOfDay.length do
   tod = TimeOfDay[t]
@@ -114,7 +114,7 @@ for t = 1 to TimeOfDay.length do
 end
 ```
 **Bad**
-```
+```c
 TimeOfDay = {"AM", "MD", "PM"}
 for t = 1 to TimeOfDay.length do
   FileName = TimeOfDay[t] + "_trips.bin"
