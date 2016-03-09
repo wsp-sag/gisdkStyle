@@ -15,6 +15,7 @@ In the `syntax/` folder you will find syntax files that we have created and/or c
   ```
   - *Notepad++*
   - *UltraEdit*
+  - [*Atom*](https://atom.io/packages/language-gisdk)
 
 Others will be added as we receive them.
 
