@@ -165,3 +165,32 @@ The dot notation can be strung together to create as complex an object as needed
 data = null
 data.Task1.SubTask1 = "Open Eyes"
 ```
+
+### Directory Paths
+Use forward slashes `/` instead of double backslashes `\\` to mark directory paths.
+
+**Good**
+```c
+"C:/model/directory"
+```
+**Bad**
+```c
+"C:\\\\model\\directory"
+```
+To store a path to a directory in a string variable, do not store the trailing forward slash as part of the path.
+This requires the user to supply a forward slash before the file.
+
+**Good**
+```c
+path_variable = "C:/model/directory"
+foo = path_variable + "/foo.txt"
+// or, to be explicit
+foo = path_variable + "/" + "foo.txt"
+```
+
+**Bad**
+```c
+path_variable = "C:/model/directory/"
+foo = path_variable + "foo.txt"
+```
+This is suggested because some GISDK macros work on the `path_variable` and require no trailing forward slash.
