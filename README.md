@@ -167,15 +167,15 @@ data.Task1.SubTask1 = "Open Eyes"
 ```
 
 ### Directory Paths
-Use forward slashes `/` instead of double backslashes `\\` to mark directory paths.
+Use forward slashes `/` instead of double backslashes `\\` to mark directory paths. Always use relative references, which you can collect using `GetInterface()` or `GetDirectoryInfo()`.
 
 **Good**
 ```c
-"C:/model/directory"
+ui_dbd = GetDirectoryInfo() + "../model/directory"
 ```
 **Bad**
 ```c
-"C:\\\\model\\directory"
+"C:\\\\folder\\model\\directory"
 ```
 To store a path to a directory in a string variable, do not store the trailing forward slash as part of the path.
 This requires the user to supply a forward slash before the file.
